@@ -1,0 +1,123 @@
+[
+  {
+    "id": "f1558f46-7f5e-45f6-9268-20a97ce0d82b",
+    "applicantName": "Asha Patel",
+    "userId": "c6b7ac0c-2c46-4db2-9b58-3cf9cb918f3c",
+    "amount": 500000,
+    "interestRate": 9.5,
+    "tenureMonths": 24,
+    "purpose": "Home renovation",
+    "status": "approved",
+    "createdAt": "2025-07-02T00:00:00.000Z",
+    "approvedAt": "2025-07-05T00:00:00.000Z",
+    "approvedBy": "Nisha Rao",
+    "nextEmiDate": "2025-11-02T00:00:00.000Z",
+    "emiSchedule": [
+      {
+        "id": "d3f4d762-5b6e-4c4d-90d7-6fb77d1f13da",
+        "sequence": 1,
+        "dueDate": "2025-08-02T00:00:00.000Z",
+        "amount": 22831.57,
+        "status": "paid",
+        "transactionId": "TXN-3A2F9C1B",
+        "paidAt": "2025-08-02T12:00:00.000Z"
+      },
+      {
+        "id": "f0c56d7d-d1dd-4f1e-af50-3e0cf93c399d",
+        "sequence": 2,
+        "dueDate": "2025-09-02T00:00:00.000Z",
+        "amount": 22831.57,
+        "status": "paid",
+        "transactionId": "TXN-9BD7E4A2",
+        "paidAt": "2025-09-02T11:50:00.000Z"
+      },
+      {
+        "id": "9b3fb7c9-a685-4dcc-94bc-70307cf74f4c",
+        "sequence": 3,
+        "dueDate": "2025-10-02T00:00:00.000Z",
+        "amount": 22831.57,
+        "status": "pending",
+        "transactionId": null
+      },
+      {
+        "id": "d4f8a28b-a4a3-4d1d-9b24-7c8287a1fa4a",
+        "sequence": 4,
+        "dueDate": "2025-11-02T00:00:00.000Z",
+        "amount": 22831.57,
+        "status": "pending",
+        "transactionId": null
+      },
+      {
+        "id": "590062e3-0f75-4d01-8c33-0fd6f14b9833",
+        "sequence": 5,
+        "dueDate": "2025-12-02T00:00:00.000Z",
+        "amount": 22831.57,
+        "status": "pending",
+        "transactionId": null
+      }
+    ]
+  },
+  {
+    "id": "bb6495c3-5646-48ac-81df-2e12a7bb9f4e",
+    "applicantName": "Asha Patel",
+    "userId": "c6b7ac0c-2c46-4db2-9b58-3cf9cb918f3c",
+    "amount": 150000,
+    "interestRate": 12.5,
+    "tenureMonths": 12,
+    "purpose": "Education",
+    "status": "pending",
+    "createdAt": "2025-09-12T00:00:00.000Z",
+    "nextEmiDate": null,
+    "emiSchedule": []
+  },
+  {
+    "id": "0a0f1c51-26e8-4d87-9fbf-2dc9fd760d1a",
+    "applicantName": "Vikram Sharma",
+    "userId": "db0a7d6c-b32d-4113-9d74-8eb88ab3ce24",
+    "amount": 320000,
+    "interestRate": 10.2,
+    "tenureMonths": 18,
+    "purpose": "Vehicle purchase",
+    "status": "approved",
+    "createdAt": "2025-06-15T00:00:00.000Z",
+    "approvedAt": "2025-06-16T00:00:00.000Z",
+    "approvedBy": "Nisha Rao",
+    "nextEmiDate": "2025-10-15T00:00:00.000Z",
+    "emiSchedule": [
+      {
+        "id": "03d7c4c9-84d4-4c4a-9487-6b8e142c4a9e",
+        "sequence": 1,
+        "dueDate": "2025-07-15T00:00:00.000Z",
+        "amount": 19305.66,
+        "status": "paid",
+        "transactionId": "TXN-7F1C8A2D",
+        "paidAt": "2025-07-15T10:12:00.000Z"
+      },
+      {
+        "id": "584cebd0-5862-4606-878b-fc7afd90dc63",
+        "sequence": 2,
+        "dueDate": "2025-08-15T00:00:00.000Z",
+        "amount": 19305.66,
+        "status": "paid",
+        "transactionId": "TXN-4B6D0E9F",
+        "paidAt": "2025-08-15T09:44:00.000Z"
+      },
+      {
+        "id": "b1dcb5a4-92fa-4b32-b058-f29b0d6cf5eb",
+        "sequence": 3,
+        "dueDate": "2025-09-15T00:00:00.000Z",
+        "amount": 19305.66,
+        "status": "pending",
+        "transactionId": null
+      },
+      {
+        "id": "d217aa6a-9619-45c4-908e-6e6daa1e2661",
+        "sequence": 4,
+        "dueDate": "2025-10-15T00:00:00.000Z",
+        "amount": 19305.66,
+        "status": "pending",
+        "transactionId": null
+      }
+    ]
+  }
+]

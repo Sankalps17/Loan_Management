@@ -1,0 +1,23 @@
+[
+  {
+    "id": "c6b7ac0c-2c46-4db2-9b58-3cf9cb918f3c",
+    "fullName": "Asha Patel",
+    "email": "asha.patel@example.com",
+    "password": "password123",
+    "role": "user"
+  },
+  {
+    "id": "db0a7d6c-b32d-4113-9d74-8eb88ab3ce24",
+    "fullName": "Vikram Sharma",
+    "email": "vikram.sharma@example.com",
+    "password": "password123",
+    "role": "user"
+  },
+  {
+    "id": "aef4d199-6f61-4e04-bf8f-053d9ed8bf8c",
+    "fullName": "Nisha Rao",
+    "email": "nisha.rao@example.com",
+    "password": "admin123",
+    "role": "admin"
+  }
+]
