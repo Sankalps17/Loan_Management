@@ -1,0 +1,583 @@
+{
+  "info": {
+    "name": "Loan Management System API",
+    "description": "Complete API collection for Home Loan Management System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "123456789"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{accessToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080/api",
+      "type": "string"
+    },
+    {
+      "key": "accessToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "refreshToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "userId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "loanId",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Signup (User)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200 || pm.response.code === 201) {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.collectionVariables.set('accessToken', jsonData.accessToken);",
+                  "    pm.collectionVariables.set('refreshToken', jsonData.refreshToken);",
+                  "    pm.collectionVariables.set('userId', jsonData.user.id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"John Doe\",\n  \"email\": \"john.doe@example.com\",\n  \"password\": \"SecurePass123!\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/signup",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "signup"]
+            },
+            "description": "Register a new user account"
+          },
+          "response": []
+        },
+        {
+          "name": "Signup (Admin)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200 || pm.response.code === 201) {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.collectionVariables.set('accessToken', jsonData.accessToken);",
+                  "    pm.collectionVariables.set('refreshToken', jsonData.refreshToken);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"Admin User\",\n  \"email\": \"admin@loanmanagement.com\",\n  \"password\": \"AdminPass123!\",\n  \"role\": \"ADMIN\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/signup",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "signup"]
+            },
+            "description": "Register a new admin account"
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.collectionVariables.set('accessToken', jsonData.accessToken);",
+                  "    pm.collectionVariables.set('refreshToken', jsonData.refreshToken);",
+                  "    pm.collectionVariables.set('userId', jsonData.user.id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john.doe@example.com\",\n  \"password\": \"SecurePass123!\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "login"]
+            },
+            "description": "Login with email and password"
+          },
+          "response": []
+        },
+        {
+          "name": "Refresh Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.collectionVariables.set('accessToken', jsonData.accessToken);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"refreshToken\": \"{{refreshToken}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/refresh",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "refresh"]
+            },
+            "description": "Get a new access token using refresh token"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/user/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["user", "profile"]
+            },
+            "description": "Get current user profile"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Loans",
+      "item": [
+        {
+          "name": "Apply for Loan",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.collectionVariables.set('loanId', jsonData.id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 5000000.00,\n  \"tenureMonths\": 240,\n  \"interestRate\": 8.5,\n  \"propertyValue\": 6000000.00,\n  \"purpose\": \"Home purchase in Bangalore\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/loans/apply",
+              "host": ["{{baseUrl}}"],
+              "path": ["loans", "apply"]
+            },
+            "description": "Apply for a new home loan"
+          },
+          "response": []
+        },
+        {
+          "name": "Get My Loans",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/loans/my-loans",
+              "host": ["{{baseUrl}}"],
+              "path": ["loans", "my-loans"]
+            },
+            "description": "Get all loans for the authenticated user"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Loan by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/loans/{{loanId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["loans", "{{loanId}}"]
+            },
+            "description": "Get details of a specific loan"
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Loans (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/loans",
+              "host": ["{{baseUrl}}"],
+              "path": ["loans"]
+            },
+            "description": "Get all loans (admin only)"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Documents",
+      "item": [
+        {
+          "name": "Upload Document",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "loanId",
+                  "value": "{{loanId}}",
+                  "type": "text"
+                },
+                {
+                  "key": "documentType",
+                  "value": "SALARY_SLIP",
+                  "type": "text",
+                  "description": "Types: SALARY_SLIP, ID_PROOF, ADDRESS_PROOF, PROPERTY_DOCUMENTS, BANK_STATEMENT"
+                },
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/documents/upload",
+              "host": ["{{baseUrl}}"],
+              "path": ["documents", "upload"]
+            },
+            "description": "Upload a document for a loan application"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Documents by Loan ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/documents/loan/{{loanId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["documents", "loan", "{{loanId}}"]
+            },
+            "description": "Get all documents for a specific loan"
+          },
+          "response": []
+        },
+        {
+          "name": "Download Document",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/documents/:documentId/download",
+              "host": ["{{baseUrl}}"],
+              "path": ["documents", ":documentId", "download"],
+              "variable": [
+                {
+                  "key": "documentId",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Download a specific document"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Document (Admin)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/documents/:documentId",
+              "host": ["{{baseUrl}}"],
+              "path": ["documents", ":documentId"],
+              "variable": [
+                {
+                  "key": "documentId",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Delete a document (admin only)"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "EMI",
+      "item": [
+        {
+          "name": "Get EMI Schedule",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/emi/schedule/{{loanId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["emi", "schedule", "{{loanId}}"]
+            },
+            "description": "Get EMI schedule for a specific loan"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Pending EMIs",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/emi/pending",
+              "host": ["{{baseUrl}}"],
+              "path": ["emi", "pending"]
+            },
+            "description": "Get all pending EMIs for the authenticated user"
+          },
+          "response": []
+        },
+        {
+          "name": "Pay EMI",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"transactionId\": \"TXN123456789\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/emi/:emiId/pay",
+              "host": ["{{baseUrl}}"],
+              "path": ["emi", ":emiId", "pay"],
+              "variable": [
+                {
+                  "key": "emiId",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Mark an EMI as paid"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Get Dashboard Stats",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/dashboard",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "dashboard"]
+            },
+            "description": "Get admin dashboard statistics"
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Loans",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/loans",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "loans"]
+            },
+            "description": "Get all loan applications"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Pending Loans",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/loans/pending",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "loans", "pending"]
+            },
+            "description": "Get all pending loan applications"
+          },
+          "response": []
+        },
+        {
+          "name": "Approve Loan",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/loans/{{loanId}}/approve",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "loans", "{{loanId}}", "approve"]
+            },
+            "description": "Approve a loan application"
+          },
+          "response": []
+        },
+        {
+          "name": "Reject Loan",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"Insufficient income documentation\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/admin/loans/{{loanId}}/reject",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "loans", "{{loanId}}", "reject"]
+            },
+            "description": "Reject a loan application"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Loan Status",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"APPROVED\",\n  \"remarks\": \"All documents verified\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/admin/loans/{{loanId}}/status",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "loans", "{{loanId}}", "status"]
+            },
+            "description": "Update loan status with custom status and remarks"
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
